@@ -61,7 +61,10 @@ function handleCountryInput() {
         return craeteCountryMarkup(data);
       }
     })
-    .catch(() => Notify.failure('Oops, there is no country with that name.'));
+    .catch(() => {
+        countryListEl.innerHTML = '';
+        countryInfoEl.innerHTML = '';
+        return Notify.failure('Oops, there is no country with that name.')});
 }
 
 inputEl.addEventListener('input', debounce(handleCountryInput, DEBOUNCE_DELAY));
